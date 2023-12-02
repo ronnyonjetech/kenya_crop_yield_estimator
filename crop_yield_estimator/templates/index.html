@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Estimator</title>
+    <!-- <link rel="stylesheet" href="navsyle.css" /> -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        padding-top: 75px;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 100px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+      }
+      .logo {
+        font-size: 32px;
+        color: black;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .navbar a {
+        position: relative;
+        font-size: 18px;
+        color: black;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 40px;
+      }
+      .navbar a::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: black;
+      }
+      .navbar a:hover::before {
+        width: 100%;
+      }
+      .main-body {
+        margin-left: 400px;
+        margin-top: 50px;
+      }
+      .main-body h2 {
+        font-size: 50px;
+      }
+      .main-body h4 {
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 20px;
+      }
+      .main-body button {
+        margin-top: 20px;
+      }
+      .main-features {
+        margin-top: 50px;
+        margin-left: 90px;
+      }
+      html {
+        height: 100%;
+      }
+      footer {
+        background-color: white;
+        margin-top: auto;
+        display: flex;
+      }
+      footer h2 {
+        margin-left: 90px;
+        font-weight: normal;
+      }
+
+      .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* Hide the browser's default checkbox */
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      /* Create a custom checkbox */
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: lightgray;
+
+        border-radius: 15px;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+
+      /* When the checkbox is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: #2196f3;
+      }
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      /* Show the checkmark when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      /* Style the checkmark/indicator */
+      .container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="" class="logo">Logo</a>
+      <nav class="navbar">
+        <a href="#">Home </a>
+        {%if user.is_authenticated %}
+        <a href="predict">Predictions</a>
+        <a href="accounts/logout">Log Out </a>
+        <a href="#">About us</a>
+        {%else%}
+        <a href="accounts/register">Register</a>
+        <a href="accounts/login">Log In</a>
+        {%endif%}
+      </nav>
+
+      <h1>Contact us</h1>
+    </header>
+    <div class="main-body">
+      <h2>Predict Your Crop Yield</h2>
+      <h4>Empowering Farmers with Data Driven Insights</h4>
+      <button>Get Started</button>
+    </div>
+    <br /><br /><br />
+    <div class="main-features">
+      <label class="container">Features/Services </label>
+      <label class="container"
+        >Historical Data Analysis
+        <input disabled type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="container"
+        >Weather Predictions
+        <input disabled type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="container"
+        >Soil Health Assessments
+        <input disabled type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="container"
+        >Expert Recommendations
+        <input disabled type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <footer>
+      <h2>About us</h2>
+      <h2>Contact Information</h2>
+    </footer>
+  </body>
+</html>

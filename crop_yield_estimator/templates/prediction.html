@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="predict" method="post">
+        {%csrf_token%}
+        <input type="number" name="year" placeholder="Enter the Year" /><br />
+        <input
+          type="number"
+          name="rainfall"
+          placeholder="Average Rainfall per year"
+        /><br />
+        <input
+          type="number"
+          name="pesticide"
+          placeholder="Pesticide Tonnes"
+        /><br />
+        <input
+          type="number"
+          name="temperature"
+          placeholder="Average temperature"
+        /><br />
+        <label for="items">Choose an item:</label><br />
+        <select name="item" id="cars">
+          <option value="cassava">Cassava</option>
+          <option value="maize">Maize</option>
+          <option value="plantains">Plantains and others</option>
+          <option value="potatoes">Potatoes</option>
+          <option value="rice">Rice,paddy</option>
+          <option value="sorghun">Sorghum</option>
+          <option value="soybeans">Soybeans</option>
+          <option value="potatoes">Sweet potatoes</option>
+          <option value="wheat">Wheat</option></select
+        ><br /><br />
+        <input type="Submit" />
+      </form>
+    </div>
+  </body>
+</html>
