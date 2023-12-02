@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="container">
-      <form action="predict" method="post">
+      <form action="calculations" method="post">
         {%csrf_token%}
         <input type="number" name="year" placeholder="Enter the Year" /><br />
         <input
@@ -32,13 +32,14 @@
           <option value="plantains">Plantains and others</option>
           <option value="potatoes">Potatoes</option>
           <option value="rice">Rice,paddy</option>
-          <option value="sorghun">Sorghum</option>
+          <option value="sorghum">Sorghum</option>
           <option value="soybeans">Soybeans</option>
-          <option value="potatoes">Sweet potatoes</option>
+          <option value="sweet_potatoes">Sweet potatoes</option>
           <option value="wheat">Wheat</option></select
         ><br /><br />
         <input type="Submit" />
       </form>
     </div>
+    <h1>Result: {{result}}</h1>
   </body>
 </html>
