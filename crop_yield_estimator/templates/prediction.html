@@ -3,28 +3,147 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+    />
+    <title>Prediction Form</title>
+    <style>
+      /*.container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+      }*/
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700&amp;display=swap");
+
+      body,
+      html {
+        background-color: #ebecf0;
+      }
+      body,
+      p,
+      input,
+      select,
+      textarea,
+      button {
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: -0.2px;
+        font-size: 16px;
+      }
+      div,
+      p {
+        color: #babecc;
+        text-shadow: 1px 1px 1px #fff;
+      }
+      form {
+        padding: 16px;
+        width: 320px;
+        margin: 0 auto;
+      }
+      .segment {
+        padding: 32px 0;
+        text-align: center;
+      }
+      button,
+      input {
+        border: 0;
+        outline: 0;
+        font-size: 16px;
+        border-radius: 320px;
+        padding: 16px;
+        background-color: #ebecf0;
+        text-shadow: 1px 1px 0 #fff;
+      }
+      label {
+        display: block;
+        margin-bottom: 24px;
+        width: 100%;
+      }
+      input {
+        margin-right: 8px;
+        box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+        width: 100%;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      input:focus {
+        box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+      }
+      button {
+        color: #61677c;
+        font-weight: bold;
+        box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+      }
+      button:active {
+        box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+      }
+      button .icon {
+        margin-right: 8px;
+      }
+      button.unit {
+        border-radius: 8px;
+        line-height: 0;
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 8px;
+        font-size: 19.2px;
+      }
+      button.unit .icon {
+        margin-right: 0;
+      }
+      button.red {
+        display: block;
+        width: 100%;
+        color: green;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .input-group label {
+        margin: 0;
+        flex: 1;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
+    <!-- <div class="container">
       <form action="calculations" method="post">
         {%csrf_token%}
-        <input type="number" name="year" placeholder="Enter the Year" /><br />
+        <input
+          type="number"
+          name="year"
+          placeholder="Enter the Year"
+        /><br /><br />
         <input
           type="number"
           name="rainfall"
           placeholder="Average Rainfall per year"
-        /><br />
+        /><br /><br />
         <input
           type="number"
           name="pesticide"
           placeholder="Pesticide Tonnes"
-        /><br />
+        /><br /><br />
         <input
           type="number"
           name="temperature"
           placeholder="Average temperature"
-        /><br />
+        /><br /><br />
         <label for="items">Choose an item:</label><br />
         <select name="item" id="cars">
           <option value="cassava">Cassava</option>
@@ -39,7 +158,78 @@
         ><br /><br />
         <input type="Submit" />
       </form>
-    </div>
-    <h1>Result: {{result}}</h1>
+      <h1>Predicted Yield : {{result}}</h1>
+    </div> -->
+    <form action="calculations" method="post">
+      {%csrf_token%}
+      <div class="segment">
+        <h1>Prediction Form</h1>
+      </div>
+      <label style="margin-left: 50px; color: #ae1100">
+        {%for message in messages%}
+        <h3><i class="icon ion ion-logo-reddit"></i>&nbsp&nbsp{{message}}</h3>
+        {%endfor%}
+      </label>
+
+      <label>
+        <input type="number" name="year" placeholder="Enter the Year" />
+      </label>
+      <label>
+        <input
+          type="number"
+          name="rainfall"
+          placeholder="Average Rainfall per year"
+        />
+      </label>
+
+      <label>
+        <input type="number" name="pesticide" placeholder="Pesticide Tonnes" />
+      </label>
+      <label>
+        <input
+          type="number"
+          name="temperature"
+          placeholder="Average temperature"
+        />
+      </label>
+      <label>
+        <label for="items">Choose an item:</label>
+        <select name="item" id="cars">
+          <option value="cassava">Cassava</option>
+          <option value="maize">Maize</option>
+          <option value="plantains">Plantains and others</option>
+          <option value="potatoes">Potatoes</option>
+          <option value="rice">Rice,paddy</option>
+          <option value="sorghum">Sorghum</option>
+          <option value="soybeans">Soybeans</option>
+          <option value="sweet_potatoes">Sweet potatoes</option>
+          <option value="wheat">Wheat</option>
+        </select>
+      </label>
+      <button class="red" type="submit">
+        <i class="icon ion ion-logo-reddit"></i> Predict
+      </button>
+      <!-- 
+      <div class="segment" style="color: #ae1100">
+        <label class="unit">
+          <a> <i class="icon ion ion-logo-reddit">Hello</i></a>
+        </label>
+        <button class="unit" type="button">
+          <i class="icon ion-md-bookmark"></i>
+        </button>
+        <button class="unit" type="button">
+          <i class="icon ion-md-settings"></i>
+        </button>
+      </div> -->
+
+      <!-- <div class="input-group">
+        <label>
+          <input type="text" placeholder="Email Address" />
+        </label>
+        <button class="unit" type="button">
+          <i class="icon ion-md-search"></i>
+        </button>
+      </div> -->
+    </form>
   </body>
 </html>

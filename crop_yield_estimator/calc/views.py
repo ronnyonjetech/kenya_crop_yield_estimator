@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Calculator
 import pickle
+from django.contrib import messages
 #global variable
 items=[]
 # Create your views here
@@ -58,6 +59,8 @@ def calculations(request):
     machineLearningModel=pickle.load(f)
     
   result=machineLearningModel.predict([items])
+  
+  messages.info(request,result)
   return render(request,'prediction.html',{'result':result})
 
 def predict(request):
