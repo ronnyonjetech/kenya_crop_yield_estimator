@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from .models import Calculator
 import pickle
+import numpy as np
 from django.contrib import messages
 #global variable
-items=[]
+global items 
 # Create your views here
 def home(request):
     name={'name':'Ron'}
     calc=Calculator.objects.all()
-    return render(request,'index.html',name)
+    return render(request,'index1.html',name)
 # def add(request):
 #     val1=int(request.POST['num1'])
 #     val2=int(request.POST['num2'])
@@ -55,14 +56,31 @@ def calculations(request):
          print("Invalid inputs") 
   print(items) 
   #Lets load the deployed machine learning model
-  with open('deployed_model/model','rb') as f:
+  with open('deployed_model/lr_model','rb') as f:
     machineLearningModel=pickle.load(f)
     
-  result=machineLearningModel.predict([items])
-  
-  messages.info(request,result)
-  return render(request,'prediction.html',{'result':result})
+  resul=machineLearningModel.predict([items])
+  resu = resul.tolist()
+  result=resu[0]
+  print(type(result))
+  print(result)
+  # messages.info(request,result)
+  # return render(request,'prediction.html',{'result':result})
+  return render(request,'index1.html',{'result':result})
+
+
+
+
 
 def predict(request):
     
     return render(request,'prediction.html')
+
+
+
+def about(request):
+    return render(request,'about.html')
+
+
+def contact(request):
+    return render(request,'contact.html')
